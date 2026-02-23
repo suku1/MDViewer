@@ -29,8 +29,7 @@
     },
     "files": [
       "dist/**/*",
-      "public/**/*",
-      "build/**/*"
+      "public/**/*"
     ],
     "fileAssociations": [
       {
@@ -61,8 +60,7 @@
       "perMachine": false,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "MDViewer",
-      "include": "build/installer.nsh"
+      "shortcutName": "MDViewer"
     },
     "forceCodeSigning": false,
     "buildDependenciesFromSource": false,
