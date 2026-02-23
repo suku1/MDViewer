@@ -43,13 +43,17 @@
     "win": {
       "target": [
         {
-          "target": "dir",
+          "target": "nsis",
           "arch": ["x64"]
         }
       ],
       "icon": "public/icon.png",
       "artifactName": "${productName}-${version}-Setup.${ext}",
-      "sign": null
+      "sign": null,
+      "publish": {
+        "provider": "github",
+        "releaseType": "release"
+      }
     },
     "nsis": {
       "oneClick": false,
