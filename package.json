@@ -42,12 +42,11 @@
     "win": {
       "target": [
         {
-          "target": "nsis",
+          "target": "dir",
           "arch": ["x64"]
         }
       ],
       "icon": "public/icon.png",
-      "artifactName": "${productName}-${version}-Setup.${ext}",
       "sign": null,
       "publish": {
         "provider": "github",

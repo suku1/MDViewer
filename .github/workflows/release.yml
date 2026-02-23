@@ -41,10 +41,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create portable zip
+        run: |
+          cd release/win-unpacked
+          7z a ../MDViewer-${{ github.event.inputs.tag || github.ref_name }}-portable.zip *
+        shell: bash
+
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
-          files: release/*.exe
+          files: release/*-portable.zip
           tag_name: ${{ github.event.inputs.tag || github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
