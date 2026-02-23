@@ -3,6 +3,20 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { marked } from 'marked';
 
+// ポータブル版の設定：実行ファイルと同じディレクトリに設定を保存
+if (app.isPackaged) {
+  const exePath = app.getPath('exe');
+  const exeDir = path.dirname(exePath);
+  const portableDataPath = path.join(exeDir, 'data');
+  
+  // dataフォルダが存在しない場合は作成
+  if (!fs.existsSync(portableDataPath)) {
+    fs.mkdirSync(portableDataPath, { recursive: true });
+  }
+  
+  app.setPath('userData', portableDataPath);
+}
+
 let mainWindow: BrowserWindow | null = null;
 let currentTheme: string = 'light';
 
