@@ -11,6 +11,9 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: windows-latest
@@ -41,9 +44,7 @@ jobs:
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            release/*.exe
-            release/*.zip
+          files: release/*.exe
           tag_name: ${{ github.event.inputs.tag || github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
