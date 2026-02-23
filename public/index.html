@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>MDViewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <button id="toggleSidebar" class="toggle-sidebar-btn" title="サイドバーを表示/非表示">☰</button>
+    <nav class="menu-bar">
+      <div class="menu-item">
+        <button class="menu-btn">ファイル</button>
+        <div class="dropdown">
+          <button class="dropdown-item" data-action="open">開く <span class="shortcut">Ctrl+O</span></button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" data-action="quit">終了 <span class="shortcut">Ctrl+Q</span></button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <button class="menu-btn">表示</button>
+        <div class="dropdown">
+          <button class="dropdown-item" data-action="align-left">左揃え</button>
+          <button class="dropdown-item" data-action="align-center">中央揃え</button>
+          <button class="dropdown-item" data-action="align-right">右揃え</button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <button class="menu-btn">テーマ</button>
+        <div class="dropdown">
+          <button class="dropdown-item" data-action="theme-light">ライト</button>
+          <button class="dropdown-item" data-action="theme-dark">ダーク</button>
+        </div>
+      </div>
+    </nav>
+    <h1><img src="header-icon.png" alt="MDViewer" class="app-icon"> <span style="font-size: 12px; opacity: 0.7; font-weight: normal;">v0.1.0</span></h1>
+  </div>
+  <div class="main-content">
+    <aside class="sidebar">
+      <div class="resize-handle"></div>
+      <div class="sidebar-section">
+        <div class="sidebar-header">
+          <span>お気に入り <span class="file-count" id="favoritesCount">(0)</span></span>
+          <button id="collapseFavorites" class="collapse-btn">▼</button>
+        </div>
+        <ul id="favoritesList" class="file-list"></ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-header">
+          <span>開いているファイル <span class="file-count" id="openFilesCount">(0)</span></span>
+          <button id="collapseOpen" class="collapse-btn">▼</button>
+        </div>
+        <ul id="openFilesList" class="file-list"></ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-header">
+          <span>履歴 <span class="file-count" id="historyCount">(0)</span></span>
+          <button id="collapseHistory" class="collapse-btn">▼</button>
+        </div>
+        <ul id="historyList" class="file-list"></ul>
+      </div>
+    </aside>
+    <div class="content-area">
+      <div id="welcomeMessage" class="welcome-message">
+        <h2>ファイルが選択されていません</h2>
+        <p>メニューバーの「ファイル」->「開く」からMarkdownファイルを選択するか、</p>
+        <p>Markdownファイルをこのウィンドウにドラッグ&ドロップしてください。</p>
+      </div>
+      <div id="markdownContent" class="markdown-body" style="display: none;"></div>
+    </div>
+  </div>
+  <div id="contextMenu" class="context-menu" style="display: none;">
+    <div class="context-menu-item" data-action="open">開く</div>
+    <div class="context-menu-item" data-action="close" style="display: none;">閉じる</div>
+    <div class="context-menu-item" data-action="show-in-explorer">エクスプローラーで表示</div>
+    <div class="context-menu-item" data-action="toggle-favorite">お気に入りに追加</div>
+  </div>
+  <script src="../dist/renderer.js"></script>
+</body>
+</html>
